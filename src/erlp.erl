@@ -100,7 +100,7 @@ decode_item(<<F:1/unsigned-integer-unit:8, Rest/binary>>) when F =< 16#bf ->
 
 decode_item(<<F:1/unsigned-integer-unit:8, Rest/binary>>) when F =< 16#f7 ->
  Length = F - 16#c0,
- <<List:Length/bytes, Rest1 >> = Rest,
+ <<List:Length/bytes, Rest1/binary >> = Rest,
  Res = decode_list(List),
  {Res, Rest1};
 
